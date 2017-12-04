@@ -58,6 +58,21 @@ class Tasks extends Memory_Model {
         protected function store()
         {
         }
+        // Retrieve an existing DB record as an object
+        function get($key, $key2 = null)
+        {
+            $this->rest->initialize(array('server' => REST_SERVER));
+            $this->rest->option(CURLOPT_PORT, REST_PORT);
+            return $this->rest->get('job/' . $key);
+        }
+        // Delete a record from the DB
+        function delete($key, $key2 = null)
+        {
+            $this->rest->initialize(array('server' => REST_SERVER));
+            $this->rest->option(CURLOPT_PORT, REST_PORT);
+            $this->rest->delete('job/' . $key);
+            $this->load(); // because the "database" might have changed
+        }
 }
 // return -1, 0, or 1 of $a's category name is earlier, equal to, or later than $b's
 function orderByCategory($a, $b)
