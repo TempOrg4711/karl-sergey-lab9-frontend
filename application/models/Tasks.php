@@ -4,11 +4,12 @@
 /**
  * Tasks class containing tasks for to-do app.
  */
-class Tasks extends XML_Model {
+class Tasks extends Memory_Model {
 
         public function __construct()
         {
-                parent::__construct(APPPATH . '../data/tasks.xml', 'id');
+                parent::__construct();
+                $this->load();
         }
         function getCategorizedTasks()
         {
